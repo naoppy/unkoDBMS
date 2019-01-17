@@ -1,0 +1,6 @@
+- Create Table テーブル名 主キーの値の種類 列名と値の種類...
+- Delete Table テーブル名
+- Edit Table
+  - 管理者：行を追加、削除
+  - 管理者：テーブルに列を追加、削除
+- Query 
