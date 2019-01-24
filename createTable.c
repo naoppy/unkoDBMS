@@ -1,10 +1,12 @@
+#include "createTable.h"
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 
 void createTable() {
+    printf("called!\n");
     char fileName[50];
     printf("input new table name:");
+    fflush(stdout);
     scanf("%s", fileName);
     if(fopen(strcat(fileName, ".dbconfig"), "r") != NULL) {
         printf("this name's table is already exist!\n");
@@ -17,4 +19,5 @@ void createTable() {
 
     fclose(config);
     fclose(raw);
+    return;
 }
