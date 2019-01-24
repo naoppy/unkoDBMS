@@ -7,8 +7,8 @@ void createTable() {
     printf("input new table name:");
     fflush(stdout);
     scanf("%s", fileName);
-    sprintf(dbconfig, "%s.dbconfig", fileName);
-    sprintf(dbdata, "%s.data", fileName);
+    sprintf(dbconfig, "db/%s.dbconfig", fileName);
+    sprintf(dbdata, "db/%s.data", fileName);
 
     if(fopen(dbconfig, "r") != NULL) {
         printf("this name's table is already exist!\n");
