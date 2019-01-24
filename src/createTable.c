@@ -3,18 +3,20 @@
 #include <string.h>
 
 void createTable() {
-    printf("called!\n");
-    char fileName[50];
+    char fileName[50], dbconfig[50], dbdata[50];
     printf("input new table name:");
     fflush(stdout);
     scanf("%s", fileName);
-    if(fopen(strcat(fileName, ".dbconfig"), "r") != NULL) {
+    sprintf(dbconfig, "%s.dbconfig", fileName);
+    sprintf(dbdata, "%s.data", fileName);
+
+    if(fopen(dbconfig, "r") != NULL) {
         printf("this name's table is already exist!\n");
         return;
     }
 
-    FILE *config = fopen(strcat(fileName, ".dbconfig"), "w");
-    FILE *raw = fopen(strcat(fileName, ".data"), "w");
+    FILE *config = fopen(dbconfig, "w");
+    FILE *raw = fopen(dbdata, "w");
 
 
     fclose(config);
