@@ -1,1 +1,3 @@
-void showTables();
+#pragma once
+
+void showDBlist();

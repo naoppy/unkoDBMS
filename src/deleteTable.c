@@ -1,8 +1,10 @@
 #include "deleteTable.h"
+#include "showTables.h"
 #include <stdio.h>
 #include <string.h>
 
 void deleteTable() {
+    showDBlist();
     char fileName[50], dbconfig[50];
     printf("input delete table name:");
     fflush(stdout);

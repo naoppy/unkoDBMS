@@ -1,7 +1,6 @@
 #include "createTable.h"
 #include "deleteTable.h"
 #include "showTables.h"
-#include "listTable.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -20,7 +19,7 @@ int main(int argc, char *argv[]) {
     } else if(strcmp(argv[1], "Edit") == 0) {
 
     } else if(strcmp(argv[1], "Show") == 0) {
-        showTables();
+        showDBlist();
     }
 
     printf("done!\n");

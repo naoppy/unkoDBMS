@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc -Wall -o out/unko.exe src/unkoDBMS.c src/createTable.c src/deleteTable.c src/listTable.c
+gcc -Wall -o out/unko.exe src/showTables.c src/createTable.c src/deleteTable.c src/unkoDBMS.c
