@@ -32,8 +32,10 @@ void registMainKey(FILE *fp) {
     long num = 0;
     char *type[50] = {
         "Int",
-        "String"
+        "Double",
+        "String",
     };
+    const int LEN = 3;
 
     //0文字より長く、コロンを含まない形式のみOK
     printf("input Main-Key name");
@@ -44,7 +46,7 @@ void registMainKey(FILE *fp) {
     } while(strlen(columnName)==0 || strstr(columnName, ":")!=NULL);
 
     printf("input Main-key Type\n");
-    for(size_t i = 0; i < 2; i++) {
+    for(size_t i = 0; i < LEN; i++) {
         printf("%d:%s\t", i+1, type[i]);
     }
     printf("\n");
@@ -53,7 +55,7 @@ void registMainKey(FILE *fp) {
         fflush(stdout);
         scanf("%s", t);
         num = strtol(t, NULL, 10);
-    } while(num < 1 || num > 2);
+    } while(num < 1 || num > LEN);
 
     fprintf(fp, "%s:%s\n", columnName, t);
 
