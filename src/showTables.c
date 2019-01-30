@@ -1,18 +1,19 @@
 #include "showTables.h"
 #include <stdio.h>
 #include <dirent.h>
+#include <string.h>
 
 void showDBlist() {
-    DIR *dir;
-	struct dirent *dp;
-	char path[64] = "./db";
-
-	dir=opendir(path);
-
-	for(dp=readdir(dir);dp!=NULL;dp=readdir(dir)){
-		printf("%s\n",dp->d_name);
-	}
-
-	closedir(dir);
-	return;
+    DIR *d;
+    struct dirent *dir;
+    d = opendir("./db");
+    if (d != NULL) {
+        while ((dir = readdir(d)) != NULL) {
+            if(strstr(dir->d_name, ".dbconfig") != NULL) {
+                printf("%s\n", strtok(dir->d_name, "."));
+            }
+        }
+        closedir(d);
+    }
+    return;
 }
