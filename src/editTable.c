@@ -54,6 +54,20 @@ bool searchDB_with_name(char* wantName) {
 }
 
 void editTable(FILE *conf, FILE *data) {
+    char columnName[50];
+    int dataNum;
+    char* columns[50];
+    int nums[50];
+    int index = 0;
+    while(fscanf(conf, "%s:%d", columnName, &dataNum) != EOF) {
+        strcpy(columns[index], columnName);
+        nums[index++] = dataNum;
+    }
     
+    const int SIZE = index;
+
+    while(true) {
+        
+    }
     return;
 }
