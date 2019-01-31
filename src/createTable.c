@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 void createTable() {
     char fileName[50], dbconfig[50], dbdata[50];
@@ -38,7 +39,7 @@ void registMainKey(FILE *fp) {
     const int LEN = 3;
 
     //0文字より長く、コロンを含まない形式のみOK
-    printf("input Main-Key name");
+    printf("input Main-Key name\n");
     do {
         printf("waiting...>");
         fflush(stdout);
@@ -58,6 +59,35 @@ void registMainKey(FILE *fp) {
     } while(num < 1 || num > LEN);
 
     fprintf(fp, "%s:%s\n", columnName, t);
+
+
+    while(true) {
+        //0文字より長く、コロンを含まない形式のみOK
+        printf("input Column name, if you'll finish, input 'Q'\n");
+        do {
+            printf("waiting...>");
+            fflush(stdout);
+            scanf("%s", columnName);
+        } while(strlen(columnName)==0 || strstr(columnName, ":")!=NULL);
+
+        if(strcmp(columnName, "Q") == 0) {
+            break;
+        }
+
+        printf("input Column Type\n");
+        for(size_t i = 0; i < LEN; i++) {
+            printf("%d:%s\t", i+1, type[i]);
+        }
+        printf("\n");
+        do {
+            printf("waiting...>");
+            fflush(stdout);
+            scanf("%s", t);
+            num = strtol(t, NULL, 10);
+        } while(num < 1 || num > LEN);
+
+        fprintf(fp, "%s:%s\n", columnName, t);
+    }
 
     return;
 }
