@@ -65,9 +65,20 @@ void editTable(FILE *conf, FILE *data) {
     }
     
     const int SIZE = index;
-
+    char command[50];
     while(true) {
-        
+        printf("input command [insert|delete|quit]>");
+        fflush(stdout);
+        scanf("%s", command);
+        if(strcmp(command, "quit") == 0) break;
+        if(strcmp(command, "insert") == 0) {
+            insertRow();
+        } else if(strcmp(command, "delete") == 0) {
+            deleteRow();
+        } else {
+            printf("input command [insert|delete|quit]>");
+            fflush(stdout);
+        }
     }
     return;
 }
