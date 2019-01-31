@@ -6,7 +6,7 @@
 void deleteTable() {
     showDBlist();
     char fileName[100], dbconfig[100], dbdata[100];
-    printf("input delete table name:");
+    printf("[[input delete table name:");
     fflush(stdout);
     scanf("%s", fileName);
     sprintf(dbconfig, "db/%s.dbconfig", fileName);
@@ -26,5 +26,7 @@ void deleteTable() {
         printf("something wrong. faild delete\n");
     }
     
+    printf("deleted\n");
+
     return;
 }

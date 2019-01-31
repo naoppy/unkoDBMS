@@ -9,11 +9,13 @@ void showDBlist() {
     d = opendir("./db");
     if (d == NULL) return;
 
+    printf("=====table list=====\n");
     while ((dir = readdir(d)) != NULL) {
         if(strstr(dir->d_name, ".dbconfig") != NULL) {
             printf("%s\n", strtok(dir->d_name, "."));
         }
     }
     closedir(d);
+    printf("====================\n");
     return;
 }

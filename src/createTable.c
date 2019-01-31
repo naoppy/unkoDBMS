@@ -6,7 +6,7 @@
 
 void createTable() {
     char fileName[50], dbconfig[50], dbdata[50];
-    printf("input new table name:");
+    printf("[[input new table name>");
     fflush(stdout);
     scanf("%s", fileName);
     sprintf(dbconfig, "db/%s.dbconfig", fileName);
@@ -15,6 +15,7 @@ void createTable() {
     FILE *fp;
     if((fp = fopen(dbconfig, "r")) != NULL) {
         printf("this name's table is already exist!\n");
+        fclose(fp);
         return;
     }
     fclose(fp);
@@ -39,20 +40,20 @@ void registMainKey(FILE *fp) {
     const int LEN = 3;
 
     //0文字より長く、コロンを含まない形式のみOK
-    printf("input Main-Key name\n");
+    printf("[[input Main-Key name\n");
     do {
-        printf("waiting...>");
+        printf("[[waiting...>");
         fflush(stdout);
         scanf("%s", columnName);
     } while(strlen(columnName)==0 || strstr(columnName, ":")!=NULL);
 
-    printf("input Main-key Type\n");
+    printf("[[input Main-key Type\n");
     for(size_t i = 0; i < LEN; i++) {
-        printf("%d:%s\t", i+1, type[i]);
+        printf("%d:%s   ", i+1, type[i]);
     }
     printf("\n");
     do {
-        printf("waiting...>");
+        printf("[[waiting...>");
         fflush(stdout);
         scanf("%s", t);
         num = strtol(t, NULL, 10);
@@ -63,24 +64,24 @@ void registMainKey(FILE *fp) {
 
     while(true) {
         //0文字より長く、コロンを含まない形式のみOK
-        printf("input Column name, if you'll finish, input 'Q'\n");
+        printf("[[input Column name, if you'll finish, input 'q'\n");
         do {
-            printf("waiting...>");
+            printf("[[waiting...>");
             fflush(stdout);
             scanf("%s", columnName);
         } while(strlen(columnName)==0 || strstr(columnName, ":")!=NULL);
 
-        if(strcmp(columnName, "Q") == 0) {
+        if(strcmp(columnName, "q") == 0) {
             break;
         }
 
-        printf("input Column Type\n");
+        printf("[[input Column Type\n");
         for(size_t i = 0; i < LEN; i++) {
-            printf("%d:%s\t", i+1, type[i]);
+            printf("%d:%s   ", i+1, type[i]);
         }
         printf("\n");
         do {
-            printf("waiting...>");
+            printf("[[waiting...>");
             fflush(stdout);
             scanf("%s", t);
             num = strtol(t, NULL, 10);
