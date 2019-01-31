@@ -62,7 +62,7 @@ void editTable(FILE *conf, FILE *data) {
     char columns[50][50];
     int nums[50];
     int index = 0;
-    while(fscanf(conf, "%s:%d", columnName, &dataNum) != EOF) {
+    while(fscanf(conf, "%[^:]:%d\n", columnName, &dataNum) != EOF) {
         strcpy(columns[index], columnName);
         nums[index++] = dataNum;
     }
@@ -83,21 +83,18 @@ void editTable(FILE *conf, FILE *data) {
         if(strcmp(command, "quit") == 0) break;
         if(strcmp(command, "insert") == 0) {
             //insertRow();
-            // int i;
-            // char demiliter = ':';
-            // for(i = 0; i < SIZE; i++) {
-            //     printf("name:%s, type:%s input>", columns[i], type[nums[i]-1]);
-            //     fflush(stdout);
-            //     scanf("%s", inputs);
-            //     fprintf(data, inputs);
-            //     if(i == SIZE - 1) fprintf(data, &demiliter);
-            // }
-            // fprintf(data, "\n");
+            int i;
+            char *demiliter = ":";
+            for(i = 0; i < SIZE; i++) {
+                printf("name:%s, type:%s input>", columns[i], type[nums[i]-1]);
+                fflush(stdout);
+                scanf("%s", inputs);
+                fprintf(data, inputs);
+                if(i != SIZE - 1) fprintf(data, demiliter);
+            }
+            fprintf(data, "\n");
         } else if(strcmp(command, "delete") == 0) {
             //deleteRow();
-        } else {
-            printf("input command [insert|delete|quit]>");
-            fflush(stdout);
         }
     }
     return;
