@@ -1,3 +1,5 @@
+#define HEADER "\t"
+
 #include "deleteTable.h"
 #include "showTables.h"
 #include <stdio.h>
@@ -6,7 +8,7 @@
 void deleteTable() {
     showDBlist();
     char fileName[100], dbconfig[100], dbdata[100];
-    printf("[[input delete table name:");
+    printf("%sinput delete table name:", HEADER);
     fflush(stdout);
     scanf("%s", fileName);
     sprintf(dbconfig, "db/%s.dbconfig", fileName);

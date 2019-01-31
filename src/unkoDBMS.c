@@ -10,8 +10,8 @@ int main(int argc, char *argv[]) {
     showDBlist();
     char command[50];
     do {
-        printf("[input command [Create|Delete|Edit|Show] or 'q'\n");
-        printf("[waiting...>");
+        printf("input command [Create|Delete|Edit|Show] or 'q'\n");
+        printf("waiting...>");
         fflush(stdout);
         scanf("%s", command);
         if(strcmp(command, "q")==0) break;
