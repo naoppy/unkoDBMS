@@ -5,22 +5,32 @@
 #include <stdlib.h>
 #include <dirent.h>
 
-void editTable() {
-    showDBlist();
-    char DBname[100], dbconfig[50], dbdata[50];
-    printf("input full DBname to edit>");
-    do {
-        printf("waiting...>");
-        fflush(stdout);
-        scanf("%s", DBname);
-    } while(!searchDB_with_name(DBname));
+void selectTable() {
+    while(true) {
+        showDBlist();
+        char DBname[100], dbconfig[50], dbdata[50];
+        printf("input full DBname to edit, if you'll exit, put 'Q'>");
+        do {
+            printf("waiting...>");
+            fflush(stdout);
+            scanf("%s", DBname);
+        } while(!(searchDB_with_name(DBname)||strcmp(DBname, "Q")==0));
 
-    sprintf(dbconfig, "db/%s.dbconfig", DBname);
-    sprintf(dbdata, "db/%s.data", DBname);
-    FILE *fp_conf = fopen(dbconfig, "r"), *fp_data = fopen(dbdata, "w");
+        if(strcmp(DBname, "Q")==0) break;
 
-    fclose(fp_conf);
-    fclose(fp_data);
+        sprintf(dbconfig, "db/%s.dbconfig", DBname);
+        sprintf(dbdata, "db/%s.data", DBname);
+        FILE *fp_conf = fopen(dbconfig, "r"), *fp_data = fopen(dbdata, "w");
+        if(fp_conf == NULL || fp_data == NULL) {
+           fprintf(stderr, "[error] DB-file coundn't open!");
+            exit(1);
+        }
+
+        editTable(fp_conf, fp_data);
+
+        fclose(fp_conf);
+        fclose(fp_data);
+    }
     return;
 }
 
@@ -41,4 +51,9 @@ bool searchDB_with_name(char* wantName) {
     closedir(d);
     
     return false;
+}
+
+void editTable(FILE *conf, FILE *data) {
+    
+    return;
 }

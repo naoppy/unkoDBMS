@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
     } else if(strcmp(argv[1], "Delete") == 0) {
         deleteTable();
     } else if(strcmp(argv[1], "Edit") == 0) {
-        editTable();
+        selectTable();
     } else if(strcmp(argv[1], "Show") == 0) {
         showDBlist();
     }
