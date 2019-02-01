@@ -8,8 +8,9 @@
 #include <stdlib.h>
 #include <dirent.h>
 
+char DBname[100], dbconfig[100], dbdata[100];
+
 void selectTable() {
-    char DBname[100], dbconfig[100], dbdata[100];
     printf("%sinput full DBname to edit\n", HEADER);
     do {
         printWaiting();
@@ -90,10 +91,13 @@ void editTable(FILE *conf, FILE *data) {
                 if(i != SIZE - 1) fprintf(data, demiliter);
             }
             fprintf(data, "\n");
+            fflush(data);
         } else if(strcmp(command, "delete") == 0) {
             //deleteRow();
         } else if(strcmp(command, "show") == 0) {
-            //show();
+            char c[200];
+            sprintf(c, "cat %s | sed \"s/:/ /g\"", dbdata);
+            system(c);
         }
     }
     return;
