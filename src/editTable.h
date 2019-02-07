@@ -6,3 +6,4 @@
 void selectTable();
 void editTable(FILE *fp1, FILE *fp2);
 bool searchDB_with_name(char* wantName);
+bool isEmptyFile();

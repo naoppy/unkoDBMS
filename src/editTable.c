@@ -87,18 +87,55 @@ void editTable(FILE *conf, FILE *data) {
                 printf("%sname:%s, type:%s input>", HEADER, columns[i], type[nums[i]-1]);
                 fflush(stdout);
                 scanf("%s", inputs);
+                //keyの重複はダメ
+                if(i == 0) {
+                    char c[200];
+                    sprintf(c, "grep -E '^%s:' %s > ./db/TMP.txt", inputs, dbdata);
+                    system(c);
+
+                    if(!isEmptyFile()) {
+                        printf("%s[error] Main-key must not overlap!\n", HEADER);
+                        fflush(stdout);
+                        goto WHILE_LOOP;
+                    }
+                }
                 fprintf(data, inputs);
                 if(i != SIZE - 1) fprintf(data, demiliter);
             }
             fprintf(data, "\n");
             fflush(data);
         } else if(strcmp(command, "delete") == 0) {
-            //deleteRow();
+            char word[200];
+            //0文字より長く、コロンを含まない形式のみOK
+            printf("%sinput delete column's main key name\n", HEADER);
+            do {
+                printWaiting();
+                scanf("%s", word);
+            } while(strlen(word)==0 || strstr(word, "*")!=NULL || strstr(word, ".")!=NULL);
+
+            char c[200], c2[200];
+            sprintf(c, "sed -e \"/^%s:/d\" %s > ./db/TMP.txt", word, dbdata);
+            sprintf(c2, "cp ./db/TMP.txt %s", dbdata);
+            system(c);
+            system(c2);
         } else if(strcmp(command, "show") == 0) {
             char c[200];
             sprintf(c, "cat %s | sed \"s/:/ /g\"", dbdata);
             system(c);
         }
+        WHILE_LOOP:
+        ;
     }
     return;
+}
+
+bool isEmptyFile() {
+    bool b = false;
+    FILE *fp;
+    fp = fopen("./db/TMP.txt", "r");
+    if(fgetc(fp) == EOF) {
+        b = true;
+    }
+    fclose(fp);
+    return b;
 }
