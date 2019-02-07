@@ -1,4 +1,13 @@
-﻿## できること
+﻿## Usage
+create output directory `mkdir out` then,
+
+create store directory`mkdir db`
+
+build `./build.sh`
+
+execute `./out/unko.exe`
+
+## できること
 - テーブル作成 [Create]
 - テーブル削除 [Delete]
 - テーブルを編集 [Edit]
